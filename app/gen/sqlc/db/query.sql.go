@@ -151,3 +151,13 @@ func (q *Queries) ListBookOverPrice(ctx context.Context, price int32) ([]ListBoo
 	}
 	return items, nil
 }
+
+const resetTables = `-- name: ResetTables :exec
+truncate authors,
+books
+`
+
+func (q *Queries) ResetTables(ctx context.Context) error {
+	_, err := q.db.ExecContext(ctx, resetTables)
+	return err
+}

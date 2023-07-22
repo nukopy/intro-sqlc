@@ -32,3 +32,7 @@ from books b
     and b.author_id = a.id
 where price > $1
 order by b.title;
+
+-- name: ResetTables :exec
+truncate authors,
+books;
