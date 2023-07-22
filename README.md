@@ -52,6 +52,18 @@ docker compose exec db bash
 docker compose exec db psql -d sample_db -U myuser
 ```
 
+- Run SQL directly
+
+```sh
+docker compose exec db psql <db> -U <user> -c "<your sql>"
+```
+
+Example: delete records from specified relations
+
+```sh
+docker compose exec db psql intro_sqlc_db -U myuser -c "truncate authors, books;"
+```
+
 - Basic commands in PostgreSQL REPL
 
 ```sh
