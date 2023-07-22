@@ -6,8 +6,8 @@ services:
     ports:
       - "15432:5432" # host:container
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - ./sql/init:/docker-entrypoint-initdb.d
       - ./data:/var/lib/postgresql/data
