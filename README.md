@@ -49,7 +49,7 @@ docker compose exec db bash
 - Connect PostgreSQL REPL
 
 ```sh
-docker compose exec db psql -d sample_db -U myuser
+docker compose exec db psql -d intro_sqlc_db -U myuser
 ```
 
 - Run SQL directly
