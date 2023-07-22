@@ -1,2 +1,2 @@
 -- create user
-create user "myuser" with password "mypassword";
+create user "myuser" with password 'mypassword';
