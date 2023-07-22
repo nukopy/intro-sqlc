@@ -6,8 +6,9 @@ services:
     ports:
       - "15432:5432" # host:container
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: intro_sqlc_db
     volumes:
       - ./sql/init:/docker-entrypoint-initdb.d
       - ./data:/var/lib/postgresql/data

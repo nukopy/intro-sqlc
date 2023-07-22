@@ -1,2 +1,5 @@
 -- create db
-create database "intro_sqlc_db";
+-- PostgreSQL を Docker コンテナで使用する場合、環境変数 POSTGRES_DB で指定したデータベースが使用される。
+-- PostgreSQL では、MySQL のような use [database] というコマンドはなく、SQL スクリプトが実行されるときに対象のデータベースに接続されていることが前提となる。
+-- そのため、/docker-entrypoint-initdb.d/ に配置した SQL スクリプトでの制御はちょっと勝手が違う。docker-compose.yml の PostgreSQL 関連の環境変数によって実行コンテキストが変わる。
+-- create database "intro_sqlc_db";
