@@ -11,7 +11,7 @@ import (
 )
 
 const createAuthor = `-- name: CreateAuthor :one
-insert into author (id, name)
+insert into authors (id, name)
 values ($1, $2)
 returning id, name, created_at
 `
@@ -29,7 +29,7 @@ func (q *Queries) CreateAuthor(ctx context.Context, arg CreateAuthorParams) (Aut
 }
 
 const deleteAuthor = `-- name: DeleteAuthor :exec
-delete from author
+delete from authors
 where id = $1
 `
 
@@ -40,7 +40,7 @@ func (q *Queries) DeleteAuthor(ctx context.Context, id int32) error {
 
 const getAuthor = `-- name: GetAuthor :one
 select id, name, created_at
-from author
+from authors
 where id = $1
 limit 1
 `
@@ -54,7 +54,7 @@ func (q *Queries) GetAuthor(ctx context.Context, id int32) (Author, error) {
 
 const listAuthors = `-- name: ListAuthors :many
 select id, name, created_at
-from author
+from authors
 order by id
 `
 
@@ -85,8 +85,8 @@ const listBookOverPrice = `-- name: ListBookOverPrice :many
 select b.title,
     a.name,
     b.price
-from book b
-    left join author a on 1 = 1
+from books b
+    left join authors a on 1 = 1
     and b.author_id = a.id
 where price > $1
 order by b.title
