@@ -1,0 +1,12 @@
+version: "3"
+services:
+  db:
+    image: postgres:15.3
+    ports:
+      - "15432:5432" # host:container
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: intro-sqlc
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
