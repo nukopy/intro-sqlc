@@ -28,6 +28,37 @@ func (q *Queries) CreateAuthor(ctx context.Context, arg CreateAuthorParams) (Aut
 	return i, err
 }
 
+const createBook = `-- name: CreateBook :one
+insert into books (id, title, author_id, price)
+values ($1, $2, $3, $4)
+returning id, title, price, author_id, created_at
+`
+
+type CreateBookParams struct {
+	ID       int32
+	Title    string
+	AuthorID int32
+	Price    int32
+}
+
+func (q *Queries) CreateBook(ctx context.Context, arg CreateBookParams) (Book, error) {
+	row := q.db.QueryRowContext(ctx, createBook,
+		arg.ID,
+		arg.Title,
+		arg.AuthorID,
+		arg.Price,
+	)
+	var i Book
+	err := row.Scan(
+		&i.ID,
+		&i.Title,
+		&i.Price,
+		&i.AuthorID,
+		&i.CreatedAt,
+	)
+	return i, err
+}
+
 const deleteAuthor = `-- name: DeleteAuthor :exec
 delete from authors
 where id = $1

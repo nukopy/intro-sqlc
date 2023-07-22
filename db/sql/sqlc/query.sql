@@ -18,6 +18,11 @@ returning *;
 delete from authors
 where id = $1;
 
+-- name: CreateBook :one
+insert into books (id, title, author_id, price)
+values ($1, $2, $3, $4)
+returning *;
+
 -- name: ListBookOverPrice :many
 select b.title,
     a.name,
