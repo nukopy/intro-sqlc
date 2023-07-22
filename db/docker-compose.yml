@@ -2,11 +2,12 @@ version: "3"
 services:
   db:
     image: postgres:15.3
+    container_name: intro-sqlc_db
     ports:
       - "15432:5432" # host:container
     environment:
       POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: intro-sqlc
+      POSTGRES_PASSWORD: mypassword
     volumes:
-      - ./db/data:/var/lib/postgresql/data
+      - ./sql/init:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/postgresql/data
